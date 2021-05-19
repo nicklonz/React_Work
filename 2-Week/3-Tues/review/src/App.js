@@ -12,7 +12,8 @@ function App() {
       img: "https://image.shutterstock.com/image-photo/beef-hamburger-sandwich-aubergine-paste-600w-1538897342.jpg"
     }
 
-      const foods = ["Pizza", "Cheeseburger", "Sushi"]
+      const foods = ["Pizza", "Cheeseburger", "Sushi", "Supersandwich"
+      ]
 
   return (
     <div className="App">
