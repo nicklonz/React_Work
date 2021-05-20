@@ -1,7 +1,5 @@
-import './App.css';
-
 import React, { Component } from 'react';
-
+import './App.css';
 import Profile from './components/Profile.js';
 import MoodTracker from './components/MoodTracker.js';
 
@@ -26,7 +24,7 @@ class App extends Component {
       <Profile
         userImg={this.state.userImg}
         username={this.state.username}
-        favoriteFoods={this.state.favoriteFoods}
+        favoriteFoods={this.state.favoriteFoods.sort()}
         currentMood={this.state.currentMood}
       />
         <MoodTracker currentMood={this.state.currentMood} />
