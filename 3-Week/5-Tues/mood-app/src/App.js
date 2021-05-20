@@ -10,10 +10,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userImg: "",
-      username: "NPL",
+      userImg: "Blank URL",
+      username: "Nick",
       content: "Here we go...",
-      favoriteFoods: ["Everything Bagel", "Sushi", "Hot Wings"],
+      favoriteFoods: ["Zoo","Apple Pie","Everything Bagel", "Sushi", "Hot Wings"],
       currentMood: 9
     }
   }
@@ -24,6 +24,7 @@ class App extends Component {
     <div className="App">
       <h1>Mood Tracker</h1>
       <Profile
+        userImg={this.state.userImg}
         username={this.state.username}
         favoriteFoods={this.state.favoriteFoods}
         currentMood={this.state.currentMood}
