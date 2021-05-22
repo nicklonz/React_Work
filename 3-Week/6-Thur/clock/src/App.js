@@ -30,7 +30,7 @@ class App extends Component {
   return (
     <div className="App">
       <h1>IT'S A CLOCK</h1>
-      <p>It is { this.state.clock.toLocaleTimeString() }</p>
+      <h1>It is now {this.state.clock.toLocaleTimeString() }</h1>
     </div>
   );
   }
