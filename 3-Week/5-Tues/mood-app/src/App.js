@@ -12,7 +12,7 @@ class App extends Component {
       username: "Nick",
       content: "Here we go...",
       favoriteFoods: ["Zoo","Apple Pie","Everything Bagel", "Sushi", "Hot Wings"],
-      currentMood: 9
+      currentMood: 5
     }
   }
 
