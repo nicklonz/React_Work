@@ -28,6 +28,7 @@ class App extends Component {
         currentMood={this.state.currentMood}
       />
         <MoodTracker currentMood={this.state.currentMood} />
+
     </div>
     );
   }

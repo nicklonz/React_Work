@@ -4,42 +4,69 @@ import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { getDogList, getRandomDog } from './services/apiHelper';
+
 import BreedList from './components/BreedList';
+import RandomDogs from './components/RandomDogs';
+import Header from './components/Header';
 
-  class App extends Component {
-    constructor() {
-      super();
+// class components give us...
+// 1.) State -> setState, constructor
+// 2.) Lifecycle Methods
 
-      this.state = {
-          dogs: []
-      }
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      dogs: [],
+      randomDogPic: null,
+      currentView: ""
     }
+  }
 
-    fetchDog = async () => {
-      const response = await axios.get('https://dog.ceo/api/breeds/list/all')
-      console.log(response.data.message);
-      const dogs = Object.keys(response.data.message);
-      console.log(dogs);
-      this.setState({ dogs })
-    }
+  fetchDog = async () => {
+    const dogs = await getDogList();
+    this.setState({ dogs })
+  }
 
-    fetchRandomDogPic = async (breed) => {
-      const response = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random`);
-      this.setState({randomDogPic:response.data.message})
-    }
-    
-    render() {
+  fetchRandomDogPic = async (breed) => {
+    const dogPic = await getRandomDog(breed);
+    this.setState({
+      randomDogPic: dogPic
+    })
+  }
+
+  pageView() {
+    if (this.state.currentView === "list") {
       return (
-        <div className="App">
-          <h1>DOG PICS</h1>
-          { this.state.randomDogPic && <img src={this.state.randomDogPic} alt="Cute Dog"/> }
-          <BreedList
-            dogs={this.state.dogs}
-            fetchDog={this.fetchDog}
-            fetchRandomDogPic={this.fetchRandomDogPic}
-          />
-        </div>
+        <BreedList 
+          dogs={this.state.dogs} 
+          fetchDog={this.fetchDog}
+          fetchRandomDogPic={this.fetchRandomDogPic}
+        />
+      )
+    } else if (this.state.currentView === "random") {
+      return (
+        <RandomDogs dogPic={this.state.randomDogPic} />
+      )
+    }
+  }
+
+  setView = (updatedView) => {
+    this.setState({
+      currentView: updatedView
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header setView={this.setView} />
+        { this.pageView() }
+      </div>
     );
   }
 }
+
 export default App;
